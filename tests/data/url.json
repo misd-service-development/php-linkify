@@ -1,0 +1,132 @@
+{
+    "tests":[
+        {
+            "test":"www.example.com",
+            "expected":"<a href=\"http://www.example.com\">www.example.com</a>"
+        },
+        {
+            "test":"http://www.example.com/",
+            "expected":"<a href=\"http://www.example.com/\">http://www.example.com/</a>"
+        },
+        {
+            "test":"http://www.example.com",
+            "expected":"<a href=\"http://www.example.com\">http://www.example.com</a>"
+        },
+        {
+            "test":"www.example.com/",
+            "expected":"<a href=\"http://www.example.com/\">www.example.com/</a>"
+        },
+        {
+            "test":"www.example.com/example",
+            "expected":"<a href=\"http://www.example.com/example\">www.example.com/example</a>"
+        },
+        {
+            "test":"www.example.com/example/",
+            "expected":"<a href=\"http://www.example.com/example/\">www.example.com/example/</a>"
+        },
+        {
+            "test":"http://www.example.com/example",
+            "expected":"<a href=\"http://www.example.com/example\">http://www.example.com/example</a>"
+        },
+        {
+            "test":"http://www.example.com/example/",
+            "expected":"<a href=\"http://www.example.com/example/\">http://www.example.com/example/</a>"
+        },
+        {
+            "test":"(http://www.example.com/)",
+            "expected":"(<a href=\"http://www.example.com/\">http://www.example.com/</a>)"
+        },
+        {
+            "test":"http://www.example.com/)",
+            "expected":"<a href=\"http://www.example.com/\">http://www.example.com/</a>)"
+        },
+        {
+            "test":"www.example.com/)",
+            "expected":"<a href=\"http://www.example.com/\">www.example.com/</a>)"
+        },
+        {
+            "test":"website:http://www.example.com/example",
+            "expected":"website:<a href=\"http://www.example.com/example\">http://www.example.com/example</a>"
+        },
+        {
+            "test":"http://www.example.com/example-example/.",
+            "expected":"<a href=\"http://www.example.com/example-example/\">http://www.example.com/example-example/</a>."
+        },
+        {
+            "test":"http://www.example.com/example-example/-",
+            "expected":"<a href=\"http://www.example.com/example-example/\">http://www.example.com/example-example/</a>-"
+        },
+        {
+            "test":"www.example.com/example?fdasfs=24fa3fd32",
+            "expected":"<a href=\"http://www.example.com/example?fdasfs=24fa3fd32\">www.example.com/example?fdasfs=24fa3fd32</a>"
+        },
+        {
+            "test":"www.example.com/example?fdasfs=24fa3fd32&asdsa=af5t34tw",
+            "expected":"<a href=\"http://www.example.com/example?fdasfs=24fa3fd32&asdsa=af5t34tw\">www.example.com/example?fdasfs=24fa3fd32&asdsa=af5t34tw</a>"
+        },
+        {
+            "test":"http://www.example.com/example?fdasfs=24fa3fd32",
+            "expected":"<a href=\"http://www.example.com/example?fdasfs=24fa3fd32\">http://www.example.com/example?fdasfs=24fa3fd32</a>"
+        },
+        {
+            "test":"http://www.example.com/example?fdasfs=24fa3fd32&asdsa=af5t34tw",
+            "expected":"<a href=\"http://www.example.com/example?fdasfs=24fa3fd32&asdsa=af5t34tw\">http://www.example.com/example?fdasfs=24fa3fd32&asdsa=af5t34tw</a>"
+        },
+        {
+            "test":"(www-example.example.example.com).",
+            "expected":"(<a href=\"http://www-example.example.example.com\">www-example.example.example.com</a>)."
+        },
+        {
+            "test":"http://www.example.com/example.aspx",
+            "expected":"<a href=\"http://www.example.com/example.aspx\">http://www.example.com/example.aspx</a>"
+        },
+        {
+            "test":"(www.example.com/example.php)",
+            "expected":"(<a href=\"http://www.example.com/example.php\">www.example.com/example.php</a>)"
+        },
+        {
+            "test":"http://mail.example.com/example/compose?to=example@example.com",
+            "expected":"<a href=\"http://mail.example.com/example/compose?to=example@example.com\">http://mail.example.com/example/compose?to=example@example.com</a>"
+        },
+        {
+            "test":"www.example.com/example_(example)",
+            "expected":"<a href=\"http://www.example.com/example_(example)\">www.example.com/example_(example)</a>"
+        },
+        {
+            "test":"http://www.example.com/example_(example)",
+            "expected":"<a href=\"http://www.example.com/example_(example)\">http://www.example.com/example_(example)</a>"
+        },
+        {
+            "test":"http://example.com/something?co,m,m,as,",
+            "expected":"<a href=\"http://example.com/something?co,m,m,as\">http://example.com/something?co,m,m,as</a>,"
+        },
+        {
+            "test":"ftp://example.com",
+            "expected":"<a href=\"ftp://example.com\">ftp://example.com</a>"
+        },
+        {
+            "test":"example.com/example#example",
+            "expected":"<a href=\"http://example.com/example#example\">example.com/example#example</a>"
+        },
+        {
+            "test":"http://example.com/example#example",
+            "expected":"<a href=\"http://example.com/example#example\">http://example.com/example#example</a>"
+        },
+        {
+            "test":"www.example.com/example.pdf",
+            "expected":"<a href=\"http://www.example.com/example.pdf\">www.example.com/example.pdf</a>"
+        },
+        {
+            "test":"www-example.example.com.",
+            "expected":"<a href=\"http://www-example.example.com\">www-example.example.com</a>."
+        },
+        {
+            "test":"http://ex.am/pLE",
+            "expected":"<a href=\"http://ex.am/pLE\">http://ex.am/pLE</a>"
+        },
+        {
+            "test":"http://www.example.com/~example/example.html",
+            "expected":"<a href=\"http://www.example.com/~example/example.html\">http://www.example.com/~example/example.html</a>"
+        }
+    ]
+}

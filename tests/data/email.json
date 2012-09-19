@@ -1,0 +1,96 @@
+{
+    "tests":[
+        {
+            "test":"example@example.com",
+            "expected":"<a href=\"mailto:example@example.com\">example@example.com</a>"
+        },
+        {
+            "test":"example.a'ddress@example.com",
+            "expected":"<a href=\"mailto:example.a'ddress@example.com\">example.a'ddress@example.com</a>"
+        },
+        {
+            "test":"example+address@example.com",
+            "expected":"<a href=\"mailto:example+address@example.com\">example+address@example.com</a>"
+        },
+        {
+            "test":"exam-ple@example.com",
+            "expected":"<a href=\"mailto:exam-ple@example.com\">exam-ple@example.com</a>"
+        },
+        {
+            "test":"example@example.example.com",
+            "expected":"<a href=\"mailto:example@example.example.com\">example@example.example.com</a>"
+        },
+        {
+            "test":"example@exam-ple.example.com",
+            "expected":"<a href=\"mailto:example@exam-ple.example.com\">example@exam-ple.example.com</a>"
+        },
+        {
+            "test":"Lorem example@example.com ipsum.",
+            "expected":"Lorem <a href=\"mailto:example@example.com\">example@example.com</a> ipsum."
+        },
+        {
+            "test":"Lorem ipsum example@example.com dolor sit amet.",
+            "expected":"Lorem ipsum <a href=\"mailto:example@example.com\">example@example.com</a> dolor sit amet."
+        },
+        {
+            "test":"example@example.com.",
+            "expected":"<a href=\"mailto:example@example.com\">example@example.com</a>."
+        },
+        {
+            "test":"example@example.com,",
+            "expected":"<a href=\"mailto:example@example.com\">example@example.com</a>,"
+        },
+        {
+            "test":"example@example.example.com.",
+            "expected":"<a href=\"mailto:example@example.example.com\">example@example.example.com</a>."
+        },
+        {
+            "test":"(example@example.com)",
+            "expected":"(<a href=\"mailto:example@example.com\">example@example.com</a>)"
+        },
+        {
+            "test":"(example@example.example.com)",
+            "expected":"(<a href=\"mailto:example@example.example.com\">example@example.example.com</a>)"
+        },
+        {
+            "test":"(example@example.com),",
+            "expected":"(<a href=\"mailto:example@example.com\">example@example.com</a>),"
+        },
+        {
+            "test":"'example@example.com'",
+            "expected":"'<a href=\"mailto:example@example.com\">example@example.com</a>'"
+        },
+        {
+            "test":"'example@example.com",
+            "expected":"'<a href=\"mailto:example@example.com\">example@example.com</a>"
+        },
+        {
+            "test":"example@example.com'",
+            "expected":"<a href=\"mailto:example@example.com\">example@example.com</a>'"
+        },
+        {
+            "test":"(example@example.com).",
+            "expected":"(<a href=\"mailto:example@example.com\">example@example.com</a>)."
+        },
+        {
+            "test":"example@example.com).",
+            "expected":"<a href=\"mailto:example@example.com\">example@example.com</a>)."
+        },
+        {
+            "test":"(example@example.com",
+            "expected":"(<a href=\"mailto:example@example.com\">example@example.com</a>"
+        },
+        {
+            "test":"mailto:example@example.com",
+            "expected":"mailto:<a href=\"mailto:example@example.com\">example@example.com</a>"
+        },
+        {
+            "test":"(mailto:example@example.com)or",
+            "expected":"(mailto:<a href=\"mailto:example@example.com\">example@example.com</a>)or"
+        },
+        {
+            "test":"Email:example@example.com",
+            "expected":"Email:<a href=\"mailto:example@example.com\">example@example.com</a>"
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "tests":[
+        "Lorem ipsum dolor sit amet.",
+        "Lorem ipsum dolor.sit amet.",
+        "Lorem ipsum dolor@sit amet",
+        "Lorem ipsum 8.15am dolor 4.30pm.",
+        "example(at)example.com"
+    ]
+}
