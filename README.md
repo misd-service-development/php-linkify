@@ -1,6 +1,8 @@
 Linkify
 =======
 
+[![Build Status](https://secure.travis-ci.org/misd-service-development/php-linkify.png)](http://travis-ci.org/misd-service-development/php-linkify)
+
 Converts URLs and email addresses into HTML links.
 
 There are many regex variations shared on the internet for performing this task, but few are robust. Linkify contains a large number of unit tests to counter this.
