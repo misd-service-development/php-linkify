@@ -46,7 +46,7 @@ class Linkify
 \b
 (
   (?:
-    ((https?|ftps?)://)                     # scheme://
+    ((ht|f)tps?://)                         # scheme://
     (?:
       /{1,3}                                # 1-3 slashes
       |                                     #   or
@@ -76,7 +76,7 @@ EOT;
         $text = preg_replace($pattern, '<a href="$0">$0</a>', $text);
 
         // fix any links missing a scheme
-        $pattern = "~<a href=\"[^((https?|ftps?)://)](.*?)\">(.*?)<\/a>~";
+        $pattern = "~<a href=\"[^((ht|f)tps?://)](.*?)\">(.*?)<\/a>~";
 
         return preg_replace($pattern, "<a href=\"http://$2\">$2</a>", $text);
     }
