@@ -14,6 +14,8 @@ namespace Misd\Linkify\Test;
 /**
  * URL test.
  *
+ * This makes sure that Linkify::processUrls() converts URLs into links.
+ *
  * @author Chris Wilkinson <chris.wilkinson@admin.cam.ac.uk>
  */
 class UrlTest extends LinkifyTest
@@ -33,6 +35,9 @@ class UrlTest extends LinkifyTest
     /**
      * Avoid turning email address into URL links test.
      *
+     * This makes sure that email addresses are not turned into links by
+     * Linkify::processUrls().
+     *
      * @test
      */
     public function avoidEmailLinks()
@@ -45,9 +50,12 @@ class UrlTest extends LinkifyTest
     /**
      * Avoid turning non-URLs into links.
      *
+     * This makes sure that things that look like either URLs or email
+     * addresses are not turned into links by Linkify::processUrls().
+     *
      * @test
      */
-    public function avoidLinks()
+    public function avoidNonLinks()
     {
         foreach ($this->ignoreTests as $test) {
             $this->assertEquals($test, $this->linkify->processUrls($test));
