@@ -9,6 +9,10 @@
             "expected":"<a href=\"http://www.example.com/\">http://www.example.com/</a>"
         },
         {
+            "test":"https://www.example.com/",
+            "expected":"<a href=\"https://www.example.com/\">https://www.example.com/</a>"
+        },
+        {
             "test":"http://www.example.com",
             "expected":"<a href=\"http://www.example.com\">http://www.example.com</a>"
         },
