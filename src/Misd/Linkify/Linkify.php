@@ -14,7 +14,7 @@ namespace Misd\Linkify;
 /**
  * Linkify.
  *
- *
+ * Converts URLs and/or email addresses into links.
  *
  * @author Chris Wilkinson <chris.wilkinson@admin.cam.ac.uk>
  */
