@@ -43,7 +43,6 @@ class Linkify
     {
         $pattern = <<<EOT
 ~(?xi)
-\b
 (
   (?:
     ((ht|f)tps?://)                         # scheme://
