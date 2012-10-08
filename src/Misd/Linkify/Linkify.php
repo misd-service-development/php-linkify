@@ -47,12 +47,6 @@ class Linkify
 (
   (?:
     ((ht|f)tps?://)                         # scheme://
-    (?:
-      /{1,3}                                # 1-3 slashes
-      |                                     #   or
-      [a-z0-9%]                             # Single letter or digit or '%'
-                                            # (Trying not to match e.g. "URI::Escape")
-    )
     |                                       #   or
     www\d{0,3}\.                            # "www.", "www1.", "www2." … "www999."
     |                                       #   or
