@@ -89,6 +89,26 @@
             "expected":"(<a href=\"http://www.example.com/example.php\">www.example.com/example.php</a>)"
         },
         {
+            "test":".http://www.example.com",
+            "expected":".<a href=\"http://www.example.com\">http://www.example.com</a>"
+        },
+        {
+            "test":"/http://www.example.com",
+            "expected":"/<a href=\"http://www.example.com\">http://www.example.com</a>"
+        },
+        {
+            "test":"\"http://www.example.com\"",
+            "expected":"\"<a href=\"http://www.example.com\">http://www.example.com</a>\""
+        },
+        {
+            "test":"'http://www.example.com'",
+            "expected":"'<a href=\"http://www.example.com\">http://www.example.com</a>'"
+        },
+        {
+            "test":"\"example.com/\"",
+            "expected":"\"<a href=\"http://example.com/\">example.com/</a>\""
+        },
+        {
             "test":"http://mail.example.com/example/compose?to=example@example.com",
             "expected":"<a href=\"http://mail.example.com/example/compose?to=example@example.com\">http://mail.example.com/example/compose?to=example@example.com</a>"
         },
