@@ -109,6 +109,18 @@
             "expected":"<a href=\"ftp://example.com\">ftp://example.com</a>"
         },
         {
+            "test":"example.com/",
+            "expected":"<a href=\"http://example.com/\">example.com/</a>"
+        },
+        {
+            "test":"example.com/example/example",
+            "expected":"<a href=\"http://example.com/example/example\">example.com/example/example</a>"
+        },
+        {
+            "test":"example.example.com/example/example",
+            "expected":"<a href=\"http://example.example.com/example/example\">example.example.com/example/example</a>"
+        },
+        {
             "test":"example.com/example#example",
             "expected":"<a href=\"http://example.com/example#example\">example.com/example#example</a>"
         },

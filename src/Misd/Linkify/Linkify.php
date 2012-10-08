@@ -52,13 +52,13 @@ class Linkify
     |                                       #   or
     www\-                                   # "www-"
     |                                       #   or
-    [a-z0-9.\-]+\.[a-z]{2,4}/               # looks like domain name followed by a slash
+    [a-z0-9.\-]+\.[a-z]{2,4}(?=/)           # looks like domain name followed by a slash
   )
-  (?:                                       # One or more:
+  (?:                                       # Zero or more:
     [^\s()<>]+                              # Run of non-space, non-()<>
     |                                       #   or
     \(([^\s()<>]+|(\([^\s()<>]+\)))*\)      # balanced parens, up to 2 levels
-  )+
+  )*
   (?:                                       # End with:
     \(([^\s()<>]+|(\([^\s()<>]+\)))*\)      # balanced parens, up to 2 levels
     |                                       #   or
