@@ -47,10 +47,21 @@ abstract class LinkifyTest extends \PHPUnit_Framework_TestCase
     {
         $this->linkify = new Linkify();
         $data = json_decode(file_get_contents(__DIR__ . '/../../../data/email.json'));
+        if (null === $data) {
+            $this->markTestIncomplete('Failed to read email test data file');
+        }
         $this->emailTests = $data->tests;
+
         $data = json_decode(file_get_contents(__DIR__ . '/../../../data/url.json'));
+        if (null === $data) {
+            $this->markTestIncomplete('Failed to read URL test data file');
+        }
         $this->urlTests = $data->tests;
+
         $data = json_decode(file_get_contents(__DIR__ . '/../../../data/ignore.json'));
+        if (null === $data) {
+            $this->markTestIncomplete('Failed to read ignore test data file');
+        }
         $this->ignoreTests = $data->tests;
     }
 }
