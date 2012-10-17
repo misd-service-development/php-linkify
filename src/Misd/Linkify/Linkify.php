@@ -25,6 +25,8 @@ class Linkify
      *
      * Adds in links to both URLs and email addresses.
      *
+     * @codeCoverageIgnore
+     *
      * @param string $text Text to process
      * @return string Processed text
      */
