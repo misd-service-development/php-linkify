@@ -27,8 +27,9 @@ class Linkify
      *
      * @codeCoverageIgnore
      *
-     * @param string $text Text to process
-     * @return string Processed text
+     * @param string $text Text to process.
+     *
+     * @return string Processed text.
      */
     public function process($text)
     {
@@ -38,8 +39,9 @@ class Linkify
     /**
      * Process URLs.
      *
-     * @param string $text Text to process
-     * @return string Processed text
+     * @param string $text Text to process.
+     *
+     * @return string Processed text.
      */
     public function processUrls($text)
     {
@@ -79,8 +81,9 @@ EOT;
     /**
      * Process email addresses.
      *
-     * @param string $text Text to process
-     * @return string Processed text
+     * @param string $text Text to process.
+     *
+     * @return string Processed text.
      */
     public function processEmails($text)
     {
