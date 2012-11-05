@@ -47,7 +47,6 @@ class Linkify
     {
         $pattern = <<<EOT
 ~(?xi)
-(
   (?:
     ((ht|f)tps?://)                         # scheme://
     |                                       #   or
@@ -67,7 +66,6 @@ class Linkify
     |                                       #   or
     [^\s`!\-()\[\]{};:'".,<>?«»“”‘’]         # not a space or one of these punct chars
   )
-)
 ~
 EOT;
         $text = preg_replace($pattern, '<a href="$0">$0</a>', $text);
@@ -90,14 +88,12 @@ EOT;
         $pattern = <<<EOT
 ~(?xi)
 \b
-(
     (?<!=)                                  # Not part of a query string
     [A-Z0-9._'%+-]+                         # Username
     @                                       # At
     [A-Z0-9.-]+                             # Domain
     \.                                      # Dot
     [A-Z]{2,4}                              # Something
-)
 ~
 EOT;
 
