@@ -50,7 +50,7 @@ class Linkify
   (?:
     ((ht|f)tps?://)                         # scheme://
     |                                       #   or
-    www\d{0,3}\.                            # "www.", "www1.", "www2." … "www999."
+    www\d{0,3}\.                            # "www.", "www1.", "www2." ... "www999."
     |                                       #   or
     www\-                                   # "www-"
     |                                       #   or
