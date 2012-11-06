@@ -175,6 +175,34 @@
         {
             "test":"examplewww.example.com/",
             "expected":"<a href=\"http://examplewww.example.com/\">examplewww.example.com/</a>"
+        },
+        {
+            "test":"<p>www.example.com</p>",
+            "expected":"<p><a href=\"http://www.example.com\">www.example.com</a></p>"
+        },
+        {
+            "test":"<x>www.example.com</x>",
+            "expected":"<x><a href=\"http://www.example.com\">www.example.com</a></x>"
+        },
+        {
+            "test":"<pre/> www.example.com",
+            "expected":"<pre/> <a href=\"http://www.example.com\">www.example.com</a>"
+        },
+        {
+            "test":"<pre /> www.example.com",
+            "expected":"<pre /> <a href=\"http://www.example.com\">www.example.com</a>"
+        },
+        {
+            "test":"<pre></pre> www.example.com",
+            "expected":"<pre></pre> <a href=\"http://www.example.com\">www.example.com</a>"
+        },
+        {
+            "test":"<pre ></pre> www.example.com",
+            "expected":"<pre ></pre> <a href=\"http://www.example.com\">www.example.com</a>"
+        },
+        {
+            "test":"<pre></ pre> www.example.com",
+            "expected":"<pre></ pre> <a href=\"http://www.example.com\">www.example.com</a>"
         }
     ]
 }
