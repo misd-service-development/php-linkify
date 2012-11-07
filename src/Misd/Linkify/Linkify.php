@@ -12,18 +12,14 @@
 namespace Misd\Linkify;
 
 /**
- * Linkify.
- *
- * Converts URLs and/or email addresses into links.
+ * Converts URLs and/or email addresses into HTML links.
  *
  * @author Chris Wilkinson <chris.wilkinson@admin.cam.ac.uk>
  */
 class Linkify
 {
     /**
-     * Process text.
-     *
-     * Adds in links to both URLs and email addresses.
+     * Add HTML links to both URLs and email addresses.
      *
      * @codeCoverageIgnore
      *
@@ -37,7 +33,7 @@ class Linkify
     }
 
     /**
-     * Process URLs.
+     * Add HTML links to URLs.
      *
      * @param string $text Text to process.
      *
@@ -49,7 +45,7 @@ class Linkify
     }
 
     /**
-     * Process email addresses.
+     * Add HTML links to email addresses.
      *
      * @param string $text Text to process.
      *
