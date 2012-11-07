@@ -12,14 +12,12 @@
 namespace Misd\Linkify\Test;
 
 /**
- * Email address test.
- *
  * This makes sure that Linkify::processEmails() converts email addresses into
  * links.
  *
  * @author Chris Wilkinson <chris.wilkinson@admin.cam.ac.uk>
  */
-class EmailTest extends LinkifyTest
+class ProcessEmailsTest extends LinkifyTest
 {
     /**
      * Convert email addresses into links test.
