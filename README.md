@@ -27,7 +27,7 @@ Installation
            // ...
            "require": {
                // ...
-               "misd/linkify": "1.0.*"
+               "misd/linkify": "1.1.*"
            }
         }
 
