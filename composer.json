@@ -1,25 +1,25 @@
 {
-    "name":"misd/linkify",
-    "type":"library",
-    "description":"Converts URLs and email addresses in text into HTML links",
-    "keywords":["url", "email address", "convert", "link"],
-    "homepage":"https://github.com/misd-service-development/php-linkify",
-    "license":"MIT",
-    "authors":[
+    "name": "misd/linkify",
+    "type": "library",
+    "description": "Converts URLs and email addresses in text into HTML links",
+    "keywords": ["url", "email address", "convert", "link"],
+    "homepage": "https://github.com/misd-service-development/php-linkify",
+    "license": "MIT",
+    "authors": [
         {
-            "name":"Chris Wilkinson",
-            "email":"chris.wilkinson@admin.cam.ac.uk"
+            "name": "Chris Wilkinson",
+            "email": "chris.wilkinson@admin.cam.ac.uk"
         }
     ],
-    "support":{
-        "issues":"https://github.com/misd-service-development/php-linkify/issues"
+    "support": {
+        "issues": "https://github.com/misd-service-development/php-linkify/issues"
     },
-    "require":{
-        "php":">=5.3.0"
+    "require": {
+        "php": ">=5.3.0"
     },
-    "autoload":{
-        "psr-0":{
-            "Misd\\Linkify":"src/"
+    "autoload": {
+        "psr-0": {
+            "Misd\\Linkify": "src/"
         }
     }
 }
