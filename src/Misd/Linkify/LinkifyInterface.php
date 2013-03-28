@@ -1,0 +1,47 @@
+<?php
+
+/*
+ * This file is part of the Linkify library.
+ *
+ * (c) University of Cambridge
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Misd\Linkify;
+
+/**
+ * Converts URLs and/or email addresses into HTML links.
+ *
+ * @author Chris Wilkinson <chris.wilkinson@admin.cam.ac.uk>
+ */
+interface LinkifyInterface
+{
+    /**
+     * Add HTML links to both URLs and email addresses.
+     *
+     * @param string $text Text to process.
+     *
+     * @return string Processed text.
+     */
+    public function process($text);
+
+    /**
+     * Add HTML links to URLs.
+     *
+     * @param string $text Text to process.
+     *
+     * @return string Processed text.
+     */
+    public function processUrls($text);
+
+    /**
+     * Add HTML links to email addresses.
+     *
+     * @param string $text Text to process.
+     *
+     * @return string Processed text.
+     */
+    public function processEmails($text);
+}

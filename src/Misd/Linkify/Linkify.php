@@ -16,14 +16,10 @@ namespace Misd\Linkify;
  *
  * @author Chris Wilkinson <chris.wilkinson@admin.cam.ac.uk>
  */
-class Linkify
+class Linkify implements LinkifyInterface
 {
     /**
-     * Add HTML links to both URLs and email addresses.
-     *
-     * @param string $text Text to process.
-     *
-     * @return string Processed text.
+     * {@inheritdoc}
      */
     public function process($text)
     {
@@ -31,11 +27,7 @@ class Linkify
     }
 
     /**
-     * Add HTML links to URLs.
-     *
-     * @param string $text Text to process.
-     *
-     * @return string Processed text.
+     * {@inheritdoc}
      */
     public function processUrls($text)
     {
@@ -43,11 +35,7 @@ class Linkify
     }
 
     /**
-     * Add HTML links to email addresses.
-     *
-     * @param string $text Text to process.
-     *
-     * @return string Processed text.
+     * {@inheritdoc}
      */
     public function processEmails($text)
     {
