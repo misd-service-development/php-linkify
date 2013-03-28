@@ -11,6 +11,8 @@
 
 namespace Misd\Linkify\Test;
 
+use Misd\Linkify\Linkify;
+
 /**
  * This makes sure that Linkify::processUrls() converts URLs into links.
  *
@@ -22,11 +24,17 @@ class ProcessUrlsTest extends LinkifyTest
      * Convert URLs into links test.
      *
      * @test
+     * @dataProvider urlProvider
      */
-    public function makeUrlLinks()
+    public function makeUrlLinks(array $data)
     {
-        foreach ($this->urlTests as $test) {
-            $this->assertEquals($test->expected, $this->linkify->processUrls($test->test));
+        $linkify = new Linkify($data['options']);
+
+        foreach ($data['tests'] as $test) {
+            $this->assertEquals(
+                $test['expected'],
+                $linkify->processUrls($test['test'], array_key_exists('options', $test) ? $test['options'] : array())
+            );
         }
     }
 
@@ -37,11 +45,20 @@ class ProcessUrlsTest extends LinkifyTest
      * Linkify::processUrls().
      *
      * @test
+     * @dataProvider emailProvider
      */
-    public function avoidEmailLinks()
+    public function avoidEmailLinks(array $data)
     {
-        foreach ($this->emailTests as $test) {
-            $this->assertEquals($test->test, $this->linkify->processUrls($test->test));
+        $linkify = new Linkify($data['options']);
+
+        foreach ($data['tests'] as $test) {
+            $this->assertEquals(
+                $test['test'],
+                $linkify->processUrls(
+                    $test['test'],
+                    array_key_exists('options', $test) ? $test['options'] : array()
+                )
+            );
         }
     }
 
@@ -52,11 +69,14 @@ class ProcessUrlsTest extends LinkifyTest
      * addresses are not turned into links by Linkify::processUrls().
      *
      * @test
+     * @dataProvider ignoreProvider
      */
-    public function avoidNonLinks()
+    public function avoidNonLinks(array $data)
     {
-        foreach ($this->ignoreTests as $test) {
-            $this->assertEquals($test, $this->linkify->processUrls($test));
+        $linkify = new Linkify($data['options']);
+
+        foreach ($data['tests'] as $test) {
+            $this->assertEquals($test, $linkify->processUrls($test));
         }
     }
 }

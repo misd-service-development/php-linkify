@@ -11,6 +11,8 @@
 
 namespace Misd\Linkify\Test;
 
+use Misd\Linkify\Linkify;
+
 /**
  * This makes sure that Linkify::process() converts both URLs and email
  * addresses into links.
@@ -23,11 +25,20 @@ class ProcessTest extends LinkifyTest
      * Convert URLs into links test.
      *
      * @test
+     * @dataProvider urlProvider
      */
-    public function makeUrlLinks()
+    public function makeUrlLinks(array $data)
     {
-        foreach ($this->urlTests as $test) {
-            $this->assertEquals($test->expected, $this->linkify->process($test->test));
+        $linkify = new Linkify($data['options']);
+
+        foreach ($data['tests'] as $test) {
+            $this->assertEquals(
+                $test['expected'],
+                $linkify->process(
+                    $test['test'],
+                    array_key_exists('options', $test) ? $test['options'] : array()
+                )
+            );
         }
     }
 
@@ -35,11 +46,20 @@ class ProcessTest extends LinkifyTest
      * Convert email addresses into links test.
      *
      * @test
+     * @dataProvider emailProvider
      */
-    public function makeEmailLinks()
+    public function makeEmailLinks(array $data)
     {
-        foreach ($this->emailTests as $test) {
-            $this->assertEquals($test->expected, $this->linkify->process($test->test));
+        $linkify = new Linkify($data['options']);
+
+        foreach ($data['tests'] as $test) {
+            $this->assertEquals(
+                $test['expected'],
+                $linkify->process(
+                    $test['test'],
+                    array_key_exists('options', $test) ? $test['options'] : array()
+                )
+            );
         }
     }
 
@@ -50,11 +70,14 @@ class ProcessTest extends LinkifyTest
      * addresses are not turned into links by Linkify::processUrls().
      *
      * @test
+     * @dataProvider ignoreProvider
      */
-    public function avoidNonLinks()
+    public function avoidNonLinks(array $data)
     {
-        foreach ($this->ignoreTests as $test) {
-            $this->assertEquals($test, $this->linkify->process($test));
+        $linkify = new Linkify($data['options']);
+
+        foreach ($data['tests'] as $test) {
+            $this->assertEquals($test, $linkify->process($test));
         }
     }
 }

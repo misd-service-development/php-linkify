@@ -46,3 +46,35 @@ Usage
 Will output:
 
         This is my text containing a link to <a href="http://www.example.com">www.example.com</a>.
+
+### Options
+
+Options set on the constructor will be applied to all links. Alternatively you can place the options on a method call. The latter will override the former.
+
+        $linkify = new \Misd\Linkify\Linkify(array('attr' => array('class' => 'foo')));
+        $text = 'This is my text containing a link to www.example.com.';
+
+        echo $linkify->process($text);
+
+Will output:
+
+        This is my text containing a link to <a href="http://www.example.com" class="foo">www.example.com</a>.
+
+Whereas:
+
+        $linkify = new \Misd\Linkify\Linkify(array('attr' => array('class' => 'foo')));
+        $text = 'This is my text containing a link to www.example.com.';
+
+        echo $linkify->process($text, array('attr' => array('class' => 'bar')));
+
+Will output:
+
+        This is my text containing a link to <a href="http://www.example.com" class="bar">www.example.com</a>.
+
+Available options are:
+
+#### `attr`
+
+An associative array of HTML attributes to add to the link. For example:
+
+        array('attr' => array('class' => 'foo', 'style' => 'font-weight: bold; color: red;')

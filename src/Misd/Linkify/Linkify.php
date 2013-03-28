@@ -19,43 +19,74 @@ namespace Misd\Linkify;
 class Linkify implements LinkifyInterface
 {
     /**
-     * {@inheritdoc}
+     * Default options.
+     *
+     * @var array
      */
-    public function process($text)
+    protected $options;
+
+    /**
+     * Constructor.
+     *
+     * @param array $options Default options.
+     */
+    public function __construct(array $options = array())
     {
-        return $this->linkify($text);
+        $this->options = $options;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function processUrls($text)
+    public function process($text, array $options = array())
     {
-        return $this->linkify($text, true, false);
+        return $this->linkify($text, true, true, $options);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function processEmails($text)
+    public function processUrls($text, array $options = array())
     {
-        return $this->linkify($text, false, true);
+        return $this->linkify($text, true, false, $options);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function processEmails($text, array $options = array())
+    {
+        return $this->linkify($text, false, true, $options);
     }
 
     /**
      * Add links to text.
      *
-     * @param string $text   Text to linkify.
-     * @param bool   $urls   Linkify URLs?
-     * @param bool   $emails Linkify email addresses?
+     * @param string $text    Text to linkify.
+     * @param bool   $urls    Linkify URLs?
+     * @param bool   $emails  Linkify email addresses?
+     * @param array  $options Options.
      *
      * @return string Linkified text.
      */
-    protected function linkify($text, $urls = true, $emails = true)
+    protected function linkify($text, $urls = true, $emails = true, array $options = array())
     {
         if (false === $urls && false === $emails) {
             // nothing to do...
             return $text;
+        }
+
+        $options = array_merge_recursive($this->options, $options);
+
+        $attr = '';
+
+        if (true === array_key_exists('attr', $options)) {
+            foreach ($options['attr'] as $key => $value) {
+                if (true === is_array($value)) {
+                    $value = array_pop($value);
+                }
+                $attr .= sprintf(' %s="%s"', $key, $value);
+            }
         }
 
         $ignoreTags = array('head', 'link', 'a', 'script', 'style', 'code', 'pre', 'select', 'textarea', 'button');
@@ -69,10 +100,10 @@ class Linkify implements LinkifyInterface
                 // Only process this chunk if there are no unclosed $ignoreTags
                 if (null === $openTag) {
                     if (true === $urls) {
-                        $chunks[$i] = $this->linkifyUrls($chunks[$i]);
+                        $chunks[$i] = $this->linkifyUrls($chunks[$i], $attr);
                     }
                     if (true === $emails) {
-                        $chunks[$i] = $this->linkifyEmails($chunks[$i]);
+                        $chunks[$i] = $this->linkifyEmails($chunks[$i], $attr);
                     }
                 }
             } else { // odd numbers are tags
@@ -100,10 +131,11 @@ class Linkify implements LinkifyInterface
      * Add HTML links to URLs in plain text.
      *
      * @param string $text Text to linkify.
+     * @param string $attr Attributes to add to the link, with a preceding space.
      *
      * @return string Linkified text.
      */
-    protected function linkifyUrls($text)
+    protected function linkifyUrls($text, $attr = '')
     {
         $pattern = '
             ~(?xi)
@@ -129,7 +161,7 @@ class Linkify implements LinkifyInterface
             ~
         ';
 
-        $callback = function ($match) {
+        $callback = function ($match) use ($attr) {
             $caption = $match[0];
             $pattern = "~^(ht|f)tps?://~";
 
@@ -137,7 +169,7 @@ class Linkify implements LinkifyInterface
                 $match[0] = 'http://' . $match[0];
             }
 
-            return '<a href="' . $match[0] . '">' . $caption . '</a>';
+            return '<a href="' . $match[0] . '"' . $attr . '>' . $caption . '</a>';
         };
 
         return preg_replace_callback($pattern, $callback, $text);
@@ -147,10 +179,11 @@ class Linkify implements LinkifyInterface
      * Add HTML links to email addresses in plain text.
      *
      * @param string $text Text to linkify.
+     * @param string $attr Attributes to add to the link, with a preceding space.
      *
      * @return string Linkified text.
      */
-    protected function linkifyEmails($text)
+    protected function linkifyEmails($text, $attr = '')
     {
         $pattern = '
             ~(?xi)
@@ -164,8 +197,8 @@ class Linkify implements LinkifyInterface
             ~
         ';
 
-        $callback = function ($match) {
-            return '<a href="mailto:' . $match[0] . '">' . $match[0] . '</a>';
+        $callback = function ($match) use ($attr) {
+            return '<a href="mailto:' . $match[0] . '"' . $attr . '>' . $match[0] . '</a>';
         };
 
         return preg_replace_callback($pattern, $callback, $text);

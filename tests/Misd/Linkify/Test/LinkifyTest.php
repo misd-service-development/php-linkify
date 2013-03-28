@@ -11,57 +11,46 @@
 
 namespace Misd\Linkify\Test;
 
-use Misd\Linkify\Linkify;
+use PHPUnit_Framework_TestCase as TestCase;
 
 /**
  * Abstract Linkify test.
  *
  * @author Chris Wilkinson <chris.wilkinson@admin.cam.ac.uk>
  */
-abstract class LinkifyTest extends \PHPUnit_Framework_TestCase
+abstract class LinkifyTest extends TestCase
 {
-    /**
-     * @var Linkify
-     */
-    protected $linkify;
-
-    /**
-     * @var array
-     */
-    protected $urlTests;
-
-    /**
-     * @var array
-     */
-    protected $emailTests;
-
-    /**
-     * @var array
-     */
-    protected $ignoreTests;
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function setUp()
+    private function loadData($filename)
     {
-        $this->linkify = new Linkify();
-        $data = json_decode(file_get_contents(__DIR__ . '/../../../data/email.json'));
+        $data = json_decode(file_get_contents(__DIR__ . '/../../../data/' . $filename), true);
         if (null === $data) {
-            $this->markTestIncomplete('Failed to read email test data file');
+            $this->markTestIncomplete('Failed to read test data file ' . $filename);
         }
-        $this->emailTests = $data->tests;
 
-        $data = json_decode(file_get_contents(__DIR__ . '/../../../data/url.json'));
-        if (null === $data) {
-            $this->markTestIncomplete('Failed to read URL test data file');
-        }
-        $this->urlTests = $data->tests;
+        return $data;
+    }
 
-        $data = json_decode(file_get_contents(__DIR__ . '/../../../data/ignore.json'));
-        if (null === $data) {
-            $this->markTestIncomplete('Failed to read ignore test data file');
-        }
-        $this->ignoreTests = $data->tests;
+    public function urlProvider()
+    {
+        return array(
+            array($this->loadData('url.json')),
+            array($this->loadData('url-options.json')),
+        );
+    }
+
+    public function emailProvider()
+    {
+        return array(
+            array($this->loadData('email.json')),
+            array($this->loadData('email-options.json')),
+        );
+    }
+
+    public function ignoreProvider()
+    {
+        return array(
+            array($this->loadData('ignore.json')),
+            array($this->loadData('ignore-options.json')),
+        );
     }
 }

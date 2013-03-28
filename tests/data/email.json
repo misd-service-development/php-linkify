@@ -1,4 +1,6 @@
 {
+    "options": {
+    },
     "tests": [
         {
             "test": "example@example.com",
@@ -123,6 +125,28 @@
         {
             "test": "<pre></ pre> example@example.com",
             "expected": "<pre></ pre> <a href=\"mailto:example@example.com\">example@example.com</a>"
+        },
+        {
+            "test": "example@example.com",
+            "options": {
+                "attr": {
+                    "class": "foo"
+                }
+            },
+            "expected": "<a href=\"mailto:example@example.com\" class=\"foo\">example@example.com</a>"
+        },
+        {
+            "test": "example@example.com",
+            "options": {
+                "attr": {
+                    "class": "foo bar",
+                    "name": "baz"
+                },
+                "ignore": [
+                    "qux"
+                ]
+            },
+            "expected": "<a href=\"mailto:example@example.com\" class=\"foo bar\" name=\"baz\">example@example.com</a>"
         }
     ]
 }

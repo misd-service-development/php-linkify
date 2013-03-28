@@ -11,6 +11,8 @@
 
 namespace Misd\Linkify\Test;
 
+use Misd\Linkify\Linkify;
+
 /**
  * This makes sure that Linkify::processEmails() converts email addresses into
  * links.
@@ -23,11 +25,20 @@ class ProcessEmailsTest extends LinkifyTest
      * Convert email addresses into links test.
      *
      * @test
+     * @dataProvider emailProvider
      */
-    public function makeEmailLinks()
+    public function makeEmailLinks(array $data)
     {
-        foreach ($this->emailTests as $test) {
-            $this->assertEquals($test->expected, $this->linkify->processEmails($test->test));
+        $linkify = new Linkify($data['options']);
+
+        foreach ($data['tests'] as $test) {
+            $this->assertEquals(
+                $test['expected'],
+                $linkify->processEmails(
+                    $test['test'],
+                    array_key_exists('options', $test) ? $test['options'] : array()
+                )
+            );
         }
     }
 
@@ -38,11 +49,20 @@ class ProcessEmailsTest extends LinkifyTest
      * addresses, are not turned into links by Linkify::processEmails().
      *
      * @test
+     * @dataProvider urlProvider
      */
-    public function avoidUrlLinks()
+    public function avoidUrlLinks(array $data)
     {
-        foreach ($this->urlTests as $test) {
-            $this->assertEquals($test->test, $this->linkify->processEmails($test->test));
+        $linkify = new Linkify($data['options']);
+
+        foreach ($data['tests'] as $test) {
+            $this->assertEquals(
+                $test['test'],
+                $linkify->processEmails(
+                    $test['test'],
+                    array_key_exists('options', $test) ? $test['options'] : array()
+                )
+            );
         }
     }
 
@@ -53,11 +73,14 @@ class ProcessEmailsTest extends LinkifyTest
      * URLs are not turned into links by Linkify::processEmails().
      *
      * @test
+     * @dataProvider ignoreProvider
      */
-    public function avoidNonLinks()
+    public function avoidNonLinks(array $data)
     {
-        foreach ($this->ignoreTests as $test) {
-            $this->assertEquals($test, $this->linkify->processEmails($test));
+        $linkify = new Linkify($data['options']);
+
+        foreach ($data['tests'] as $test) {
+            $this->assertEquals($test, $linkify->processEmails($test));
         }
     }
 }

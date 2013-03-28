@@ -1,4 +1,6 @@
 {
+    "options": {
+    },
     "tests": [
         {
             "test": "www.example.com",
@@ -203,6 +205,28 @@
         {
             "test": "<pre></ pre> www.example.com",
             "expected": "<pre></ pre> <a href=\"http://www.example.com\">www.example.com</a>"
+        },
+        {
+            "test": "www.example.com",
+            "options": {
+                "attr": {
+                    "class": "foo"
+                }
+            },
+            "expected": "<a href=\"http://www.example.com\" class=\"foo\">www.example.com</a>"
+        },
+        {
+            "test": "www.example.com",
+            "options": {
+                "attr": {
+                    "class": "foo bar",
+                    "rel": "nofollow"
+                },
+                "ignore": [
+                    "baz"
+                ]
+            },
+            "expected": "<a href=\"http://www.example.com\" class=\"foo bar\" rel=\"nofollow\">www.example.com</a>"
         }
     ]
 }

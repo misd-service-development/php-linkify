@@ -21,27 +21,30 @@ interface LinkifyInterface
     /**
      * Add HTML links to both URLs and email addresses.
      *
-     * @param string $text Text to process.
+     * @param string $text    Text to process.
+     * @param array  $options Options.
      *
      * @return string Processed text.
      */
-    public function process($text);
+    public function process($text, array $options = array());
 
     /**
      * Add HTML links to URLs.
      *
-     * @param string $text Text to process.
+     * @param string $text    Text to process.
+     * @param array  $options Options.
      *
      * @return string Processed text.
      */
-    public function processUrls($text);
+    public function processUrls($text, array $options = array());
 
     /**
      * Add HTML links to email addresses.
      *
-     * @param string $text Text to process.
+     * @param string $text    Text to process.
+     * @param array  $options Options.
      *
      * @return string Processed text.
      */
-    public function processEmails($text);
+    public function processEmails($text, array $options = array());
 }
