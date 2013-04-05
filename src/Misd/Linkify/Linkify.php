@@ -137,8 +137,7 @@ class Linkify implements LinkifyInterface
      */
     protected function linkifyUrls($text, $attr = '')
     {
-        $pattern = '
-            ~(?xi)
+        $pattern = '~(?xi)
               (?:
                 ((ht|f)tps?://)                    # scheme://
                 |                                  #   or
@@ -156,10 +155,9 @@ class Linkify implements LinkifyInterface
               (?:                                  # End with:
                 \(([^\s()<>]+|(\([^\s()<>]+\)))*\) # balanced parens, up to 2 levels
                 |                                  #   or
-                [^\s`!\-()\[\]{};:\'".,<>?«»“”‘’]   # not a space or one of these punct chars
+                [^\s`!\-()\[\]{};:\'".,<>?«»“”‘’]  # not a space or one of these punct chars
               )
-            ~
-        ';
+        ~';
 
         $callback = function ($match) use ($attr) {
             $caption = $match[0];
@@ -185,17 +183,15 @@ class Linkify implements LinkifyInterface
      */
     protected function linkifyEmails($text, $attr = '')
     {
-        $pattern = '
-            ~(?xi)
-            \b
+        $pattern = '~(?xi)
+                \b
                 (?<!=)           # Not part of a query string
                 [A-Z0-9._\'%+-]+ # Username
                 @                # At
                 [A-Z0-9.-]+      # Domain
                 \.               # Dot
                 [A-Z]{2,4}       # Something
-            ~
-        ';
+        ~';
 
         $callback = function ($match) use ($attr) {
             return '<a href="mailto:' . $match[0] . '"' . $attr . '>' . $match[0] . '</a>';
