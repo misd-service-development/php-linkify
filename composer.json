@@ -21,5 +21,10 @@
         "psr-0": {
             "Misd\\Linkify": "src/"
         }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.1-dev"
+        }
     }
 }
