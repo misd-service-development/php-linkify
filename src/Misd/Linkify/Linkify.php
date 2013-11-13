@@ -89,6 +89,8 @@ class Linkify implements LinkifyInterface
             }
         }
 
+        $options['attr'] = $attr;
+
         $ignoreTags = array('head', 'link', 'a', 'script', 'style', 'code', 'pre', 'select', 'textarea', 'button');
 
         $chunks = preg_split('/(<.+?>)/is', $text, 0, PREG_SPLIT_DELIM_CAPTURE);
@@ -100,10 +102,10 @@ class Linkify implements LinkifyInterface
                 // Only process this chunk if there are no unclosed $ignoreTags
                 if (null === $openTag) {
                     if (true === $urls) {
-                        $chunks[$i] = $this->linkifyUrls($chunks[$i], $attr);
+                        $chunks[$i] = $this->linkifyUrls($chunks[$i], $options);
                     }
                     if (true === $emails) {
-                        $chunks[$i] = $this->linkifyEmails($chunks[$i], $attr);
+                        $chunks[$i] = $this->linkifyEmails($chunks[$i], $options);
                     }
                 }
             } else { // odd numbers are tags
@@ -131,11 +133,11 @@ class Linkify implements LinkifyInterface
      * Add HTML links to URLs in plain text.
      *
      * @param string $text Text to linkify.
-     * @param string $attr Attributes to add to the link, with a preceding space.
+     * @param array  $options Options, 'attr' key being the attributes to add to the links, with a preceding space.
      *
      * @return string Linkified text.
      */
-    protected function linkifyUrls($text, $attr = '')
+    protected function linkifyUrls($text, $options = array('attr' => ''))
     {
         $pattern = '~(?xi)
               (?:
@@ -159,15 +161,22 @@ class Linkify implements LinkifyInterface
               )
         ~';
 
-        $callback = function ($match) use ($attr) {
+        $callback = function ($match) use ($options) {
             $caption = $match[0];
             $pattern = "~^(ht|f)tps?://~";
 
             if (0 === preg_match($pattern, $match[0])) {
                 $match[0] = 'http://' . $match[0];
             }
+            
+            if (isset($options['callback'])) {
+                $cb = $options['callback']($match[0], $caption, false);
+                if (!is_null($cb)) {
+                    return $cb;
+                }
+            }
 
-            return '<a href="' . $match[0] . '"' . $attr . '>' . $caption . '</a>';
+            return '<a href="' . $match[0] . '"' . $options['attr'] . '>' . $caption . '</a>';
         };
 
         return preg_replace_callback($pattern, $callback, $text);
@@ -177,11 +186,11 @@ class Linkify implements LinkifyInterface
      * Add HTML links to email addresses in plain text.
      *
      * @param string $text Text to linkify.
-     * @param string $attr Attributes to add to the link, with a preceding space.
+     * @param array  $options Options, 'attr' key being the attributes to add to the links, with a preceding space.
      *
      * @return string Linkified text.
      */
-    protected function linkifyEmails($text, $attr = '')
+    protected function linkifyEmails($text, $options = array('attr' => ''))
     {
         $pattern = '~(?xi)
                 \b
@@ -193,8 +202,15 @@ class Linkify implements LinkifyInterface
                 [A-Z]{2,4}       # Something
         ~';
 
-        $callback = function ($match) use ($attr) {
-            return '<a href="mailto:' . $match[0] . '"' . $attr . '>' . $match[0] . '</a>';
+        $callback = function ($match) use ($options) {
+            if (isset($options['callback'])) {
+                $cb = $options['callback']($match[0], $match[0], true);
+                if (!is_null($cb)) {
+                    return $cb;
+                }
+            }
+            
+            return '<a href="mailto:' . $match[0] . '"' . $options['attr'] . '>' . $match[0] . '</a>';
         };
 
         return preg_replace_callback($pattern, $callback, $text);

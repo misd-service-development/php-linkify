@@ -78,3 +78,14 @@ Available options are:
 An associative array of HTML attributes to add to the link. For example:
 
         array('attr' => array('class' => 'foo', 'style' => 'font-weight: bold; color: red;')
+
+#### `callback`
+
+A closure to call with each url match. The closure will be called for each URL found with three parameters: the url, the caption and a boolean `isEmail` (if `$isEmail` is true, then `$url` is equals to `$caption`.
+
+If the callback return a non-null value, this value replace the link in the resulting text. If null is returned, the usual `<a href="URL">CAPTION</a>` is used.
+
+        $linkify = new \Misd\Linkify\Linkify(array('callback' => function($url, $caption, $isEmail) {
+            return '<b>' . $caption . '</b>';
+        }));
+        echo $linkify->process('This link will be converted to bold: www.example.com.'));

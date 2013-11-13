@@ -53,4 +53,9 @@ abstract class LinkifyTest extends TestCase
             array($this->loadData('ignore-options.json')),
         );
     }
+
+    public function callbackProvider()
+    {
+        return $this->loadData('callback.json');
+    }
 }
