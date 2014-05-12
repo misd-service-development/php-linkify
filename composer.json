@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Misd\\Linkify": "src/"
+            "Misd\\Linkify\\": "src/"
         }
     },
     "extra": {
