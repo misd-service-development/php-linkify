@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.1.2
+-----
+
+12 May 2014.
+
+* Fix 'Unknown modifier' warning.
+* Add a callback option to be called on each URL/email address match.
+
 1.1.1
 -----
 
