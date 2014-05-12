@@ -29,7 +29,7 @@ class CallbackTest extends LinkifyTest
     public function makeLinkWithCallback($test, $expected)
     {
         $linkify = new Linkify(array(
-            'callback' => function($url, $caption, $isEmail) {
+            'callback' => function ($url, $caption, $isEmail) {
                 return sprintf('<callback href="%s" mail="%s">%s</callback>', $url, $isEmail, $caption);
             },
         ));

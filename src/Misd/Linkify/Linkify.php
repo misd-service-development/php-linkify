@@ -132,7 +132,7 @@ class Linkify implements LinkifyInterface
     /**
      * Add HTML links to URLs in plain text.
      *
-     * @param string $text Text to linkify.
+     * @param string $text    Text to linkify.
      * @param array  $options Options, 'attr' key being the attributes to add to the links, with a preceding space.
      *
      * @return string Linkified text.
@@ -168,7 +168,7 @@ class Linkify implements LinkifyInterface
             if (0 === preg_match($pattern, $match[0])) {
                 $match[0] = 'http://' . $match[0];
             }
-            
+
             if (isset($options['callback'])) {
                 $cb = $options['callback']($match[0], $caption, false);
                 if (!is_null($cb)) {
@@ -185,7 +185,7 @@ class Linkify implements LinkifyInterface
     /**
      * Add HTML links to email addresses in plain text.
      *
-     * @param string $text Text to linkify.
+     * @param string $text    Text to linkify.
      * @param array  $options Options, 'attr' key being the attributes to add to the links, with a preceding space.
      *
      * @return string Linkified text.
@@ -209,7 +209,7 @@ class Linkify implements LinkifyInterface
                     return $cb;
                 }
             }
-            
+
             return '<a href="mailto:' . $match[0] . '"' . $options['attr'] . '>' . $match[0] . '</a>';
         };
 
