@@ -21,8 +21,8 @@
         "phpunit/phpunit": "~4.0"
     },
     "autoload": {
-        "psr-0": {
-            "Misd\\Linkify\\": "src/"
+        "psr-4": {
+            "Misd\\Linkify\\": "src/Misd/Linkify"
         }
     },
     "extra": {
