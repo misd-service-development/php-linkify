@@ -227,6 +227,10 @@
                 ]
             },
             "expected": "<a href=\"http://www.example.com\" class=\"foo bar\" rel=\"nofollow\">www.example.com</a>"
-        }
+        },
+        {
+            "test": "Http://www.example.com/",
+            "expected": "<a href=\"Http://www.example.com/\">Http://www.example.com/</a>"
+        },
     ]
 }
