@@ -231,6 +231,6 @@
         {
             "test": "Http://www.example.com/",
             "expected": "<a href=\"Http://www.example.com/\">Http://www.example.com/</a>"
-        },
+        }
     ]
 }
