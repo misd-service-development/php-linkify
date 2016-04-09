@@ -159,11 +159,11 @@ class Linkify implements LinkifyInterface
                 |                                  #   or
                 [^\s`!\-()\[\]{};:\'".,<>?«»“”‘’]  # not a space or one of these punct chars
               )
-        ~';
+        ~i';
 
         $callback = function ($match) use ($options) {
             $caption = $match[0];
-            $pattern = "~^(ht|f)tps?://~";
+            $pattern = "~^(ht|f)tps?://~i";
 
             if (0 === preg_match($pattern, $match[0])) {
                 $match[0] = 'http://' . $match[0];
