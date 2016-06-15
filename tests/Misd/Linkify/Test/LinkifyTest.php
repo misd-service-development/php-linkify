@@ -15,8 +15,6 @@ use PHPUnit_Framework_TestCase as TestCase;
 
 /**
  * Abstract Linkify test.
- *
- * @author Chris Wilkinson <chris.wilkinson@admin.cam.ac.uk>
  */
 abstract class LinkifyTest extends TestCase
 {

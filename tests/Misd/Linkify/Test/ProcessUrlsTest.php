@@ -15,8 +15,6 @@ use Misd\Linkify\Linkify;
 
 /**
  * This makes sure that Linkify::processUrls() converts URLs into links.
- *
- * @author Chris Wilkinson <chris.wilkinson@admin.cam.ac.uk>
  */
 class ProcessUrlsTest extends LinkifyTest
 {

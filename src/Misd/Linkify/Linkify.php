@@ -13,8 +13,6 @@ namespace Misd\Linkify;
 
 /**
  * Converts URLs and/or email addresses into HTML links.
- *
- * @author Chris Wilkinson <chris.wilkinson@admin.cam.ac.uk>
  */
 class Linkify implements LinkifyInterface
 {

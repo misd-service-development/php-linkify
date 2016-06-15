@@ -16,8 +16,6 @@ use Misd\Linkify\Linkify;
 /**
  * This makes sure that Linkify::processEmails() converts email addresses into
  * links.
- *
- * @author Chris Wilkinson <chris.wilkinson@admin.cam.ac.uk>
  */
 class ProcessEmailsTest extends LinkifyTest
 {
