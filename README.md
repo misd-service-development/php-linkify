@@ -19,24 +19,7 @@ It uses regex based on John Gruber's [Improved Liberal, Accurate Regex Pattern f
 Installation
 ------------
 
- 1. Add Linkify to your dependencies:
-
-```javascript
-// composer.json
-{
-   // ...
-   "require": {
-       // ...
-       "misd/linkify": "1.1.*"
-   }
-}
-```
-
- 2. Use Composer to download and install Linkify:
-
-```bash
-$ php composer.phar update misd/linkify
-```
+`composer require misd/linkify`
 
 Usage
 -----
