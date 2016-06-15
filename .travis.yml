@@ -1,5 +1,7 @@
 language: php
 
+sudo: false
+
 php:
   - 5.3
   - 5.4
@@ -8,10 +10,15 @@ php:
   - 7.0
   - hhvm
 
-before_install:
-  - composer self-update --no-interaction
+matrix:
+  fast_finish: true
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
 
 install:
-  - composer install --no-interaction --prefer-source --dev
+  - composer install --no-interaction
 
-script: vendor/bin/phpunit
+script:
+  - vendor/bin/phpunit
