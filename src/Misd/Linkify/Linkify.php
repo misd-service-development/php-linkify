@@ -13,6 +13,8 @@ namespace Misd\Linkify;
 
 /**
  * Converts URLs and/or email addresses into HTML links.
+ *
+ * @author Chris Wilkinson <chris.wilkinson@admin.cam.ac.uk>
  */
 class Linkify implements LinkifyInterface
 {
@@ -38,7 +40,7 @@ class Linkify implements LinkifyInterface
      */
     public function process($text, array $options = array())
     {
-        return $this->linkify($text, true, true, $options);
+        return $this->linkify($text, true, true, true, $options);
     }
 
     /**
@@ -46,7 +48,7 @@ class Linkify implements LinkifyInterface
      */
     public function processUrls($text, array $options = array())
     {
-        return $this->linkify($text, true, false, $options);
+        return $this->linkify($text, true, false, false, $options);
     }
 
     /**
@@ -54,9 +56,13 @@ class Linkify implements LinkifyInterface
      */
     public function processEmails($text, array $options = array())
     {
-        return $this->linkify($text, false, true, $options);
-    }
+        return $this->linkify($text, false, true, false, $options);
+    } 
 
+    public function processTwitterHandles($text, array $options = array())
+    {
+       return $this->linkify($text, false, false, true, $options); 
+    }
     /**
      * Add links to text.
      *
@@ -67,9 +73,9 @@ class Linkify implements LinkifyInterface
      *
      * @return string Linkified text.
      */
-    protected function linkify($text, $urls = true, $emails = true, array $options = array())
+    protected function linkify($text, $urls = true, $emails = true, $twitter = true, array $options = array())
     {
-        if (false === $urls && false === $emails) {
+        if (false === $urls && false === $emails && false === $twitter) {
             // nothing to do...
             return $text;
         }
@@ -104,6 +110,9 @@ class Linkify implements LinkifyInterface
                     }
                     if (true === $emails) {
                         $chunks[$i] = $this->linkifyEmails($chunks[$i], $options);
+                    }
+                    if (true === $twitter) {
+                        $chunks[$i] = $this->linkifyTwitter($chunks[$i], $options);
                     }
                 }
             } else { // odd numbers are tags
@@ -213,4 +222,32 @@ class Linkify implements LinkifyInterface
 
         return preg_replace_callback($pattern, $callback, $text);
     }
+
+    /**
+     * Add HTML links to Twitter Handles in plain text.
+     *
+     * @param string $text    Text to linkify.
+     * @param array  $options Options, 'attr' key being the attributes to add to the links, with a preceding space.
+     *
+     * @return string Linkified text.
+     */
+
+    protected function linkifyTwitter($text, $options = array('attr' => ''))
+    {
+        $pattern  = '/@([\w]+)([[^\s])/i';
+
+        $callback = function ($match) use ($options) {
+            if (isset($options['callback'])) {
+                $cb = $options['callback']($match[0], $match[0], true);
+                if (!is_null($cb)) {
+                    return $cb;
+                }
+            }
+
+            return '<a href="http://twitter.com/' . substr($match[0],1) . '"rel="nofollow" target="_blank">'. $match[0] .'</a>';
+        };
+
+        return preg_replace_callback($pattern, $callback, $text);
+    }
+                
 }
