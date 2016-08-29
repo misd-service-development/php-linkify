@@ -234,7 +234,7 @@ class Linkify implements LinkifyInterface
 
     protected function linkifyTwitter($text, $options = array('attr' => ''))
     {
-        $pattern  = '/@([\w]+)([[^\s])/i';
+        $pattern = '/\B@[^\B]([^.\s]+)/igm';
 
         $callback = function ($match) use ($options) {
             if (isset($options['callback'])) {
