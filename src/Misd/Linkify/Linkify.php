@@ -168,7 +168,7 @@ class Linkify implements LinkifyInterface
             }
 
             if (isset($options['callback'])) {
-                $cb = $options['callback']($match[0], $caption, false);
+                $cb = $options['callback']($match[0], $caption, false, $options['attr']);
                 if (!is_null($cb)) {
                     return $cb;
                 }
@@ -202,7 +202,7 @@ class Linkify implements LinkifyInterface
 
         $callback = function ($match) use ($options) {
             if (isset($options['callback'])) {
-                $cb = $options['callback']($match[0], $match[0], true);
+                $cb = $options['callback']($match[0], $match[0], true, $options['attr']);
                 if (!is_null($cb)) {
                     return $cb;
                 }
