@@ -9,6 +9,11 @@ There are many regex variations shared on the internet for performing this task,
 
 It does not cover every possible valid-yet-never-used URLs and email addresses in order to handle 'real world' usage (eg no 'gopher://'). This means, for example, that it copes better with punctuation errors.
 
+Changes in this fork
+--------------------
+
+* [Prevent Catastrophic Backtracking by applying atomic-grouping](https://github.com/lode/php-linkify/pull/1)
+
 Authors
 -------
 
