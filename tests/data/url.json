@@ -227,6 +227,18 @@
                 ]
             },
             "expected": "<a href=\"http://www.example.com\" class=\"foo bar\" rel=\"nofollow\">www.example.com</a>"
+        },
+        {
+            "test": "https://www.example.com/a_(aaaaaaaaaaaaaaaa)",
+            "expected": "<a href=\"https://www.example.com/a_(aaaaaaaaaaaaaaaa)\">https://www.example.com/a_(aaaaaaaaaaaaaaaa)</a>"
+        },
+        {
+            "test": "https://www.example.com/a_(aaaaaaaaaaaaaaaaa)",
+            "expected": "<a href=\"https://www.example.com/a_(aaaaaaaaaaaaaaaaa)\">https://www.example.com/a_(aaaaaaaaaaaaaaaaa)</a>"
+        },
+        {
+            "test": "https://www.example.com/a_(aaaaaaaaaaaaaaaaa)a",
+            "expected": "<a href=\"https://www.example.com/a_(aaaaaaaaaaaaaaaaa)a\">https://www.example.com/a_(aaaaaaaaaaaaaaaaa)a</a>"
         }
     ]
 }

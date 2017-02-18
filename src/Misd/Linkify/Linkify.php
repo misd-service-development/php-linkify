@@ -130,6 +130,9 @@ class Linkify implements LinkifyInterface
     /**
      * Add HTML links to URLs in plain text.
      *
+     * @see http://www.regular-expressions.info/catastrophic.html For more info on atomic-grouping,
+     *      used in this regex to prevent Catastrophic Backtracking.
+     *
      * @param string $text    Text to linkify.
      * @param array  $options Options, 'attr' key being the attributes to add to the links, with a preceding space.
      *
@@ -139,23 +142,23 @@ class Linkify implements LinkifyInterface
     {
         $pattern = '~(?xi)
               (?:
-                ((ht|f)tps?://)                    # scheme://
-                |                                  #   or
-                www\d{0,3}\.                       # "www.", "www1.", "www2." ... "www999."
-                |                                  #   or
-                www\-                              # "www-"
-                |                                  #   or
-                [a-z0-9.\-]+\.[a-z]{2,4}(?=/)      # looks like domain name followed by a slash
+                ((ht|f)tps?://)                      # scheme://
+                |                                    #   or
+                www\d{0,3}\.                         # "www.", "www1.", "www2." ... "www999."
+                |                                    #   or
+                www\-                                # "www-"
+                |                                    #   or
+                [a-z0-9.\-]+\.[a-z]{2,4}(?=/)        # looks like domain name followed by a slash
               )
-              (?:                                  # Zero or more:
-                [^\s()<>]+                         # Run of non-space, non-()<>
-                |                                  #   or
-                \(([^\s()<>]+|(\([^\s()<>]+\)))*\) # balanced parens, up to 2 levels
+              (?:                                    # Zero or more:
+                [^\s()<>]+                           # Run of non-space, non-()<>
+                |                                    #   or
+                \((?>[^\s()<>]+|(\([^\s()<>]+\)))*\) # balanced parens, up to 2 levels
               )*
-              (?:                                  # End with:
-                \(([^\s()<>]+|(\([^\s()<>]+\)))*\) # balanced parens, up to 2 levels
-                |                                  #   or
-                [^\s`!\-()\[\]{};:\'".,<>?«»“”‘’]  # not a space or one of these punct chars
+              (?:                                    # End with:
+                \((?>[^\s()<>]+|(\([^\s()<>]+\)))*\) # balanced parens, up to 2 levels
+                |                                    #   or
+                [^\s`!\-()\[\]{};:\'".,<>?«»“”‘’]    # not a space or one of these punct chars
               )
         ~';
 
