@@ -1,6 +1,13 @@
 Changelog
 =========
 
+1.1.3
+-----
+
+18 February 2017.
+
+* Fix catastrophic backtracking.
+
 1.1.2
 -----
 
