@@ -40,7 +40,7 @@ class Linkify implements LinkifyInterface
      */
     public function process($text, array $options = array())
     {
-        return $this->linkify($text, true, true, true, $options);
+        return $this->linkify($text, true, false, true, $options);
     }
 
     /**
@@ -183,7 +183,7 @@ class Linkify implements LinkifyInterface
                 }
             }
 
-            return '<a href="' . $match[0] . '"' . $options['attr'] . '>' . $caption . '</a>';
+            return '<a class="linkify" href="' . $match[0] . '"' . $options['attr'] . '"rel="nofollow" target="_blank"' . '>' . $caption . '</a>';
         };
 
         return preg_replace_callback($pattern, $callback, $text);
@@ -217,7 +217,7 @@ class Linkify implements LinkifyInterface
                 }
             }
 
-            return '<a href="mailto:' . $match[0] . '"' . $options['attr'] . '>' . $match[0] . '</a>';
+            return '<a class="linkify" href="mailto:' . $match[0] . '"' . $options['attr'] . '>' . $match[0] . '</a>';
         };
 
         return preg_replace_callback($pattern, $callback, $text);
@@ -234,7 +234,9 @@ class Linkify implements LinkifyInterface
 
     protected function linkifyTwitter($text, $options = array('attr' => ''))
     {
-        $pattern = '/\B@[^\B]([^.\s]+)/i';
+        $pattern = '/\B@[^\B]([^.\s]+)/';
+        //$pattern  = '/@([\w]+)([[^\s])/i'; 
+        ///$pattern  = '/@([\w]+)([^\s]+)/i';
 
         $callback = function ($match) use ($options) {
             if (isset($options['callback'])) {
@@ -244,7 +246,7 @@ class Linkify implements LinkifyInterface
                 }
             }
 
-            return '<a href="http://twitter.com/' . substr($match[0],1) . '"rel="nofollow" target="_blank">'. $match[0] .'</a>';
+            return '<a class="linkify" href="http://pms.dev:8000/' . substr($match[0],1) . '">'. $match[0] .'</a>';
         };
 
         return preg_replace_callback($pattern, $callback, $text);
