@@ -246,7 +246,7 @@ class Linkify implements LinkifyInterface
                 }
             }
 
-            return '<a class="linkify" href="https://plugmatch.com' . substr($match[0],1) . '">'. $match[0] .'</a>';
+            return '<a class="linkify" href="https://plugmatch.com/' . substr($match[0],1) . '">'. $match[0] .'</a>';
         };
 
         return preg_replace_callback($pattern, $callback, $text);
