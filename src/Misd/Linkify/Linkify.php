@@ -160,7 +160,7 @@ class Linkify implements LinkifyInterface
                 |                                    #   or
                 [^\s`!\-()\[\]{};:\'".,<>?«»“”‘’]    # not a space or one of these punct chars
               )
-        ~';
+        ~u';
 
         $callback = function ($match) use ($options) {
             $caption = $match[0];
@@ -201,7 +201,7 @@ class Linkify implements LinkifyInterface
                 [A-Z0-9.-]+      # Domain
                 \.               # Dot
                 [A-Z]{2,4}       # Something
-        ~';
+        ~u';
 
         $callback = function ($match) use ($options) {
             if (isset($options['callback'])) {
