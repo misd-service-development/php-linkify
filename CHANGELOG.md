@@ -1,6 +1,13 @@
 Changelog
 =========
 
+1.1.4
+-----
+
+17 August 2017.
+
+* Fix Unicode handling.
+
 1.1.3
 -----
 
