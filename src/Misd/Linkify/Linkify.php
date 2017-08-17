@@ -167,7 +167,11 @@ class Linkify implements LinkifyInterface
             $pattern = "~^(ht|f)tps?://~";
 
             if (0 === preg_match($pattern, $match[0])) {
-                $match[0] = 'http://' . $match[0];
+                if (array_key_exists('require_scheme', $options) && $options['require_scheme']) {
+                    return $caption;
+                } else {
+                    $match[0] = 'http://' . $match[0];
+                }
             }
 
             if (isset($options['callback'])) {
