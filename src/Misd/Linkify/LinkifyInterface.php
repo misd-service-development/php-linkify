@@ -13,6 +13,8 @@ namespace Misd\Linkify;
 
 /**
  * Converts URLs and/or email addresses into HTML links.
+ *
+ * @author Chris Wilkinson <chris.wilkinson@admin.cam.ac.uk>
  */
 interface LinkifyInterface
 {
@@ -45,4 +47,14 @@ interface LinkifyInterface
      * @return string Processed text.
      */
     public function processEmails($text, array $options = array());
+
+    /**
+     * Add HTML links to @Twitter Handles
+     *
+     * @param string $text    Text to process.
+     * @param array  $options Options.
+     *
+     * @return string Processed text.
+     */
+    public function processTwitterHandles($text, array $options = array());
 }
