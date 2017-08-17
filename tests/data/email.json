@@ -47,6 +47,14 @@
             "expected": "<a href=\"mailto:example@example.example.com\">example@example.example.com</a>."
         },
         {
+            "test": "example@example.example.com　",
+            "expected": "<a href=\"mailto:example@example.example.com\">example@example.example.com</a>　"
+        },
+        {
+            "test": "Привет example@example.com!",
+            "expected": "Привет <a href=\"mailto:example@example.com\">example@example.com</a>!"
+        },
+        {
             "test": "(example@example.com)",
             "expected": "(<a href=\"mailto:example@example.com\">example@example.com</a>)"
         },

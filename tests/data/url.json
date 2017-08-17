@@ -39,6 +39,14 @@
             "expected": "<a href=\"http://www.example.com/example/\">http://www.example.com/example/</a>"
         },
         {
+            "test": "www.example.com　",
+            "expected": "<a href=\"http://www.example.com\">www.example.com</a>　"
+        },
+        {
+            "test": "Линк: https://ru.wikipedia.org/wiki/Футбол",
+            "expected": "Линк: <a href=\"https://ru.wikipedia.org/wiki/Футбол\">https://ru.wikipedia.org/wiki/Футбол</a>"
+        },
+        {
             "test": "(http://www.example.com/)",
             "expected": "(<a href=\"http://www.example.com/\">http://www.example.com/</a>)"
         },
