@@ -73,12 +73,9 @@ class ProcessEmailsTest extends LinkifyTest
      * @test
      * @dataProvider ignoreProvider
      */
-    public function avoidNonLinks(array $data)
+    public function avoidNonLinks(array $options, $test)
     {
-        $linkify = new Linkify($data['options']);
-
-        foreach ($data['tests'] as $test) {
-            $this->assertEquals($test, $linkify->processEmails($test));
-        }
+        $linkify = new Linkify($options);
+        $this->assertEquals($test, $linkify->processEmails($test));
     }
 }

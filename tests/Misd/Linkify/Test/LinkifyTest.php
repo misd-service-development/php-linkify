@@ -46,10 +46,19 @@ abstract class LinkifyTest extends TestCase
 
     public function ignoreProvider()
     {
-        return array(
-            array($this->loadData('ignore.json')),
-            array($this->loadData('ignore-options.json')),
-        );
+        $out = array();
+        foreach(array(
+                    $this->loadData('ignore.json'),
+                    $this->loadData('ignore-options.json'),
+                ) as $data) {
+            foreach($data['tests'] as $test) {
+                $out[] = array(
+                    $data['options'],
+                    $test,
+                );
+            }
+        }
+        return $out;
     }
 
     public function callbackProvider()
