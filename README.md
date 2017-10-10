@@ -94,3 +94,8 @@ $linkify = new \Misd\Linkify\Linkify(array('callback' => function($url, $caption
 }));
 echo $linkify->process('This link will be converted to bold: www.example.com.'));
 ```
+
+Developers
+----------
+
+There is a vagrant box. Simply ssh in and type `test` to test.

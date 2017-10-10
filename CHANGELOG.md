@@ -4,8 +4,7 @@ Changelog
 Unreleased
 ----------
 
-
-
+* Add Vagrant Box
 
 1.1.4
 -----
