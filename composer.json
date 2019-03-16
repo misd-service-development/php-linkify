@@ -1,12 +1,12 @@
 {
-    "name": "misd/linkify",
+    "name": "jmbtechnologylimited/linkify",
     "type": "library",
     "description": "Converts URLs and email addresses in text into HTML links",
     "keywords": ["url", "email address", "convert", "link"],
-    "homepage": "https://github.com/misd-service-development/php-linkify",
+    "homepage": "https://github.com/JMB-Technology-Limited/php-linkify",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/misd-service-development/php-linkify/issues"
+        "issues": "https://github.com/JMB-Technology-Limited/php-linkify/issues"
     },
     "require": {
         "php": ">=5.3.0"
