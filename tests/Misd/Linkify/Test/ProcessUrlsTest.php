@@ -31,7 +31,7 @@ class ProcessUrlsTest extends LinkifyTest
         foreach ($data['tests'] as $test) {
             $this->assertEquals(
                 $test['expected'],
-                $linkify->processUrls($test['test'], array_key_exists('options', $test) ? $test['options'] : array())
+                $linkify->processUrls($test['test'], \array_key_exists('options', $test) ? $test['options'] : array())
             );
         }
     }
@@ -54,7 +54,7 @@ class ProcessUrlsTest extends LinkifyTest
                 $test['test'],
                 $linkify->processUrls(
                     $test['test'],
-                    array_key_exists('options', $test) ? $test['options'] : array()
+                    \array_key_exists('options', $test) ? $test['options'] : array()
                 )
             );
         }

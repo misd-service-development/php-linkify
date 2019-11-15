@@ -20,7 +20,7 @@ abstract class LinkifyTest extends TestCase
 {
     private function loadData($filename)
     {
-        $data = json_decode(file_get_contents(__DIR__ . '/../../../data/' . $filename), true);
+        $data = \json_decode(\file_get_contents(__DIR__ . '/../../../data/' . $filename), true);
         if (null === $data) {
             $this->markTestIncomplete('Failed to read test data file ' . $filename);
         }

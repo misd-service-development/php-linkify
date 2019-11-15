@@ -34,7 +34,7 @@ class ProcessEmailsTest extends LinkifyTest
                 $test['expected'],
                 $linkify->processEmails(
                     $test['test'],
-                    array_key_exists('options', $test) ? $test['options'] : array()
+                    \array_key_exists('options', $test) ? $test['options'] : array()
                 )
             );
         }
@@ -58,7 +58,7 @@ class ProcessEmailsTest extends LinkifyTest
                 $test['test'],
                 $linkify->processEmails(
                     $test['test'],
-                    array_key_exists('options', $test) ? $test['options'] : array()
+                    \array_key_exists('options', $test) ? $test['options'] : array()
                 )
             );
         }

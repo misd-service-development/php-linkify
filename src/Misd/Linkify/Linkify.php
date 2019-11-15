@@ -74,16 +74,16 @@ class Linkify implements LinkifyInterface
             return $text;
         }
 
-        $options = array_merge_recursive($this->options, $options);
+        $options = \array_merge_recursive($this->options, $options);
 
         $attr = '';
 
-        if (true === array_key_exists('attr', $options)) {
+        if (true === \array_key_exists('attr', $options)) {
             foreach ($options['attr'] as $key => $value) {
-                if (true === is_array($value)) {
-                    $value = array_pop($value);
+                if (true === \is_array($value)) {
+                    $value = \array_pop($value);
                 }
-                $attr .= sprintf(' %s="%s"', $key, $value);
+                $attr .= \sprintf(' %s="%s"', $key, $value);
             }
         }
 
@@ -91,11 +91,11 @@ class Linkify implements LinkifyInterface
 
         $ignoreTags = array('head', 'link', 'a', 'script', 'style', 'code', 'pre', 'select', 'textarea', 'button');
 
-        $chunks = preg_split('/(<.+?>)/is', $text, 0, PREG_SPLIT_DELIM_CAPTURE);
+        $chunks = \preg_split('/(<.+?>)/is', $text, 0, PREG_SPLIT_DELIM_CAPTURE);
 
         $openTag = null;
 
-        for ($i = 0; $i < count($chunks); $i++) {
+        for ($i = 0; $i < \count($chunks); $i++) {
             if ($i % 2 === 0) { // even numbers are text
                 // Only process this chunk if there are no unclosed $ignoreTags
                 if (null === $openTag) {
@@ -110,19 +110,19 @@ class Linkify implements LinkifyInterface
                 // Only process this tag if there are no unclosed $ignoreTags
                 if (null === $openTag) {
                     // Check whether this tag is contained in $ignoreTags and is not self-closing
-                    if (preg_match("`<(" . implode('|', $ignoreTags) . ").*(?<!/)>$`is", $chunks[$i], $matches)) {
+                    if (\preg_match("`<(" . \implode('|', $ignoreTags) . ").*(?<!/)>$`is", $chunks[$i], $matches)) {
                         $openTag = $matches[1];
                     }
                 } else {
                     // Otherwise, check whether this is the closing tag for $openTag.
-                    if (preg_match('`</\s*' . $openTag . '>`i', $chunks[$i], $matches)) {
+                    if (\preg_match('`</\s*' . $openTag . '>`i', $chunks[$i], $matches)) {
                         $openTag = null;
                     }
                 }
             }
         }
 
-        $text = implode($chunks);
+        $text = \implode($chunks);
 
         return $text;
     }
@@ -166,13 +166,13 @@ class Linkify implements LinkifyInterface
             $caption = $match[0];
             $pattern = "~^(ht|f)tps?://~";
 
-            if (0 === preg_match($pattern, $match[0])) {
+            if (0 === \preg_match($pattern, $match[0])) {
                 $match[0] = 'http://' . $match[0];
             }
 
             if (isset($options['callback'])) {
                 $cb = $options['callback']($match[0], $caption, false);
-                if (!is_null($cb)) {
+                if (!\is_null($cb)) {
                     return $cb;
                 }
             }
@@ -180,7 +180,7 @@ class Linkify implements LinkifyInterface
             return '<a href="' . $match[0] . '"' . $options['attr'] . '>' . $caption . '</a>';
         };
 
-        return preg_replace_callback($pattern, $callback, $text);
+        return \preg_replace_callback($pattern, $callback, $text);
     }
 
     /**
@@ -206,7 +206,7 @@ class Linkify implements LinkifyInterface
         $callback = function ($match) use ($options) {
             if (isset($options['callback'])) {
                 $cb = $options['callback']($match[0], $match[0], true);
-                if (!is_null($cb)) {
+                if (!\is_null($cb)) {
                     return $cb;
                 }
             }
@@ -214,6 +214,6 @@ class Linkify implements LinkifyInterface
             return '<a href="mailto:' . $match[0] . '"' . $options['attr'] . '>' . $match[0] . '</a>';
         };
 
-        return preg_replace_callback($pattern, $callback, $text);
+        return \preg_replace_callback($pattern, $callback, $text);
     }
 }

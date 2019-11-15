@@ -34,7 +34,7 @@ class ProcessTest extends LinkifyTest
                 $test['expected'],
                 $linkify->process(
                     $test['test'],
-                    array_key_exists('options', $test) ? $test['options'] : array()
+                    \array_key_exists('options', $test) ? $test['options'] : array()
                 )
             );
         }
@@ -55,7 +55,7 @@ class ProcessTest extends LinkifyTest
                 $test['expected'],
                 $linkify->process(
                     $test['test'],
-                    array_key_exists('options', $test) ? $test['options'] : array()
+                    \array_key_exists('options', $test) ? $test['options'] : array()
                 )
             );
         }
